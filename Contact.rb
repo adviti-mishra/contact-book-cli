@@ -1,7 +1,8 @@
 require 'mongo'
+
 class ContactManager
 
-    @@client = Mongo::Client.new([ '127.0.0.1:27017' ], :database => 'ContactsApp')
+    @@client = Mongo::Client.new([ 'localhost:27017' ], :database => 'ContactsApp')
     @@database = @@client.database
     @@collection = @@database[:contacts]
 
@@ -14,19 +15,42 @@ class ContactManager
             street_address: street_address
         }
         # Insert this one contact into the contacts collection
-        collection.insert_one(doc)
+        @@collection.insert_one(doc)
     end 
 
     def list_all_contacts
+        # Access all documents in the contacts collection
+        cursor =  @@collection.find
+        cursor.each do |document|
+            # print the contact
+            puts document
+          end
     end
 
-    def query_by_name(name)
+    def query_by_name(name_in)
+        # Access all documents in the contacts collection with name == name_in
+        cursor = @@collection.find( { name: name_in } )
+        cursor.each do |document|
+            # print the contact
+            puts document 
+        end
     end
 
-    def query_by_email(email_address)
+    def query_by_email(email_address_in)
+        # Access all documents in the contacts collection with email_address == email_address_in
+        cursor = @@collection.find( { email_address: email_address_in } )
+        cursor.each do |document|
+            # print the contact
+            puts document 
+        end
     end
 
-    def query_by_number(phone_number)
+    def query_by_number(phone_number_in)
+         # Access all documents in the contacts collection with phone_number == phone_number_in
+        cursor = @@collection.find( { phone_number: phone_number_in } )
+        cursor.each do |document|
+            puts document 
+        end
     end
 
 end 
