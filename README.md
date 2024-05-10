@@ -9,7 +9,7 @@
 
 ## Assumptions:
 
-1. choice is well-formated integer
+1. choice corresponding to the functionalities available is well-formated integer
 2. user can create duplicate contacts since they will have different ids internally
 3. name is a well-formatted string
 4. email address is a well-formatted string representing a valid email
