@@ -1,25 +1,23 @@
-class Contact
-    def initialize(name, email_address, phone_number, street_address)
-        @contact_name = name
-        @contact_email_address = email 
-        @contact_phone_number = phone_number
-        @contact_street_address = street_address 
-        create_contact_in_db
-    end 
+require 'mongo'
+class ContactManager
 
-    def create_contact_in_db
+    @@client = Mongo::Client.new([ '127.0.0.1:27017' ], :database => 'ContactsApp')
+    @@database = @@client.database
+    @@collection = @@database[:contacts]
+
+    def create_contact_in_db(name, email_address, phone_number, street_address)
     end 
 
     def list_all_contacts
     end
 
-    def query_by_name
+    def query_by_name(name)
     end
 
-    def query_by_email
+    def query_by_email(email_address)
     end
 
-    def query_by_number
+    def query_by_number(phone_number)
     end
 
 end 
