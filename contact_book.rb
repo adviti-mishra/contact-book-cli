@@ -31,7 +31,7 @@ loop do
         puts "4. enter the street address "
         street_address = gets.chomp
         # call corresponding function in the contactmanager
-        cm.create_contact_in_db(name, email_address, phone_number)
+        cm.create_contact_in_db(name, email_address, phone_number, street_address)
     # case 2: List all contacts
     when 2
         # call corresponding function in the contactmanager
