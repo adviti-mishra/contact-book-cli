@@ -13,7 +13,7 @@ class ContactManager
     # REQUIRES: name, email_address, phone_number, street_address are well-formatted
     # MODIFIES: the contacts collection
     # EFFECTS: Creates a new contact
-    def create_contact_in_db(name,_in email_address_in, phone_number_in, street_address_in)
+    def create_contact_in_db(name_in ,email_address_in, phone_number_in, street_address_in)
         begin
             # Create a document representing the new contact
             doc = {
