@@ -6,6 +6,15 @@ class ContactManager
     @@collection = @@database[:contacts]
 
     def create_contact_in_db(name, email_address, phone_number, street_address)
+        # Create a document representing the new contact
+        doc = {
+            name: name, 
+            email_address: email_address, 
+            phone_number: phone_number, 
+            street_address: street_address
+        }
+        # Insert this one contact into the contacts collection
+        collection.insert_one(doc)
     end 
 
     def list_all_contacts
