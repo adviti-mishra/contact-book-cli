@@ -41,7 +41,7 @@ class ContactManager
   # EFFECTS: Prints all contacts with name == name_in
   def query_by_name(name_in)
     # Access all documents in the contacts collection with name == name_in
-    cursor = @collection.find( { name: name_in } )
+    cursor = @collection.find name: name_in
     cursor.each do |document|
       # print the contact
       puts JSON.pretty_generate(document)
@@ -54,7 +54,7 @@ class ContactManager
   # EFFECTS: Prints all contacts with email_address == email_address_in
   def query_by_email(email_address_in)
     # Access all documents in the contacts collection with email_address == email_address_in
-    cursor = @collection.find( { email_address: email_address_in } )
+    cursor = @collection.find email_address: email_address_in
     cursor.each do |document|
       # print the contact
       puts JSON.pretty_generate(document)
@@ -67,14 +67,14 @@ class ContactManager
   # EFFECTS: Prints all contacts with phone_number == phone_number_in
   def query_by_number(phone_number_in)
     # Access all documents in the contacts collection with phone_number == phone_number_in
-    cursor = @collection.find( { phone_number: phone_number_in } )
+    cursor = @collection.find phone_number: phone_number_in
     cursor.each do |document|
       puts JSON.pretty_generate(document) 
     end
     rescue StandardError => e 
       raise StandardError, "An error occured while querying by phone number: #{e.message}"
   end
-  
+
 end
 
 
