@@ -2,11 +2,7 @@
 
 require_relative '../lib/contact_manager'
 
-begin
 cm = ContactManager .new 
-rescue StandardError => e 
-puts "#{e.message}"
-end 
 
 # REQUIRES: choice is well-formated integer
 #           user can create duplicate contacts since they will have different ids internally 
@@ -15,6 +11,7 @@ end
 #           phone number is a well-formatted string representing a valid phone number 
 
 loop do
+
   # print the menu
   puts "-------------MENU-------------------"
   puts "Choose one of these options"
@@ -24,6 +21,7 @@ loop do
   puts "4. Search a contact by email address "
   puts "5. Search a contact by phone number "
   puts "6. Exit application "
+  puts "-------------------------------------"
 
   # get the user's choice
   print "Enter your choice now "
@@ -42,55 +40,41 @@ loop do
       phone_number = gets.chomp 
       puts "4. enter the street address "
       street_address = gets.chomp
-      begin
-          # call corresponding function in the contactmanager
-          cm.create_contact_in_db(name, email_address, phone_number, street_address)
-      rescue StandardError => e
-          puts "#{e.message}"
-      end 
+      # call corresponding function in the ContactManager
+      cm.create_contact_in_db(name, email_address, phone_number, street_address)
   # case 2: List all contacts
   when 2
-      begin
-          # call corresponding function in the contactmanager
-          cm.list_all_contacts
-      rescue StandardError => e
-          puts "#{e.message}"
-      end 
+      # call corresponding function in the ContactManager
+      cm.list_all_contacts
   # case 3: Search a contact by name
   when 3
+      # get the name from the user
       puts "Enter the name you want to look for "
       name = gets.chomp 
-      begin
-          # call corresponding function in the contactmanager
-          cm.query_by_name(name)
-      rescue StandardError => e
-          puts "#{e.message}"
-      end 
+      # call corresponding function in the ContactManager
+      cm.query_by_name(name)
   # case 4: Search a contact by email
   when 4 
+      # get the email address from the user
       puts "Enter the email address you want to look for"
       email_address = gets.chomp
-      begin
-          # call corresponding function in the contactmanager
-          cm.query_by_email(email_address)
-      rescue StandardError => e
-          puts "#{e.message}"
-      end 
+      # call corresponding function in the ContactManager
+      cm.query_by_email(email_address)
   # case 5: Search a contact by phone number
   when 5
+      # get the phone number from the user
       puts "Enter the phone number you want to look for "
       phone_number = gets.chomp
-      begin
-          # call corresponding function in the contactmanager
-          cm.query_by_number(phone_number)
-      rescue StandardError => e
-          puts "#{e.message}"
-      end 
+      # call corresponding function in the ContactManager
+      cm.query_by_number(phone_number)
   # case 6: exit the menu
   when 6 
       break
   # invalid integer choice
   else
       puts "Please enter a valid choice"
-  end 
+  end
+  # rescue any error raised
+  rescue Mongo::Error => e
+    puts "Operation did not work: #{e.message}" 
 end

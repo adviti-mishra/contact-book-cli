@@ -1,6 +1,7 @@
 require 'mongo'
 
 class ContactManager
+  
   # EFFECTS: Creates a connection and sets instance variables for the database of contacts 
   def initialize
     @client =  Mongo::Client.new([ 'localhost:27017' ], :database => 'ContactsApp')
