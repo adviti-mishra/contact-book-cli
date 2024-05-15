@@ -87,4 +87,6 @@ class ContactManager
         end
     end
 
-end 
+end
+
+

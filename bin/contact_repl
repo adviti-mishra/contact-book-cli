@@ -1,9 +1,11 @@
-require_relative 'ContactManager'
+#!/usr/bin/env ruby
+
+require_relative '../lib/contact_manager'
 
 begin
 cm = ContactManager .new 
 rescue StandardError => e 
-    puts "#{e.message}"
+  puts "#{e.message}"
 end 
 
 # REQUIRES: choice is well-formated integer
