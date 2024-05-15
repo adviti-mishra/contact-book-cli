@@ -1,12 +1,12 @@
 require 'mongo'
 
 class ContactManager
-  def initialize()
+  # EFFECTS: Creates a connection and sets instance variables for the database of contacts 
+  def initialize
     @client =  Mongo::Client.new([ 'localhost:27017' ], :database => 'ContactsApp')
     @database = @client.database
     @collection = @database[:contacts]
-    rescue StandardError => e 
-      raise StandardError, "An error occured: #{e.message}"
+  end
   
   # REQUIRES: name, email_address, phone_number, street_address are well-formatted
   # MODIFIES: the contacts collection
@@ -21,8 +21,6 @@ class ContactManager
     }
     # Insert this one contact into the contacts collection
     @collection.insert_one(doc)
-    rescue StandardError => e
-      raise StandardError, "An error occurred while creating the contact: #{e.message}"
   end
 
   # EFFECTS: Lists all contacts
@@ -33,8 +31,6 @@ class ContactManager
       # print the contact
       puts JSON.pretty_generate(document)
     end
-    rescue StandardError => e 
-      raise StandardError, "An error occured while listing all contacts: #{e.message}"
   end
 
   # REQUIRES: name_in is well-formatted
@@ -46,8 +42,6 @@ class ContactManager
       # print the contact
       puts JSON.pretty_generate(document)
     end
-    rescue StandardError => e 
-      raise StandardError, "An error occured while querying by name: #{e.message}"
   end
 
   # REQUIRES: email_address_in is well-formatted
@@ -59,8 +53,6 @@ class ContactManager
       # print the contact
       puts JSON.pretty_generate(document)
     end
-  rescue StandardError => e
-      raise StandardError,  "An error occured while querying by email address: #{e.message}"
   end
 
   # REQUIRES: phone_number_in is well-formatted
@@ -71,10 +63,7 @@ class ContactManager
     cursor.each do |document|
       puts JSON.pretty_generate(document) 
     end
-    rescue StandardError => e 
-      raise StandardError, "An error occured while querying by phone number: #{e.message}"
   end
 
 end
-
 
