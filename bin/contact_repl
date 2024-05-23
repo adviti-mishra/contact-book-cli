@@ -1,6 +1,7 @@
 #!/usr/bin/env ruby
-
-require_relative '../lib/contact_manager_ruby_driver'
+# uncomment based on what implementation you want to use - the ruby driver or mongoid
+# require_relative '../lib/contact_manager_ruby_driver'
+require_relative '../lib/contact_manager_mongoid'
 
 cm = ContactManager .new 
 

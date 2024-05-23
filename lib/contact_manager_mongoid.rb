@@ -27,7 +27,7 @@ class ContactManager
     contacts = Contact.all
     contacts.each do |document|
       # print the contact
-      puts JSON.pretty_generate(document)
+      puts JSON.pretty_generate(document.as_document)
     end
   end
 
@@ -38,7 +38,7 @@ class ContactManager
     contacts = Contact.where name: name_in
     contacts.each do |document|
       # print the contact
-      puts JSON.pretty_generate(document)
+      puts JSON.pretty_generate(document.as_document)
     end
   end
 
@@ -49,7 +49,7 @@ class ContactManager
     contacts = Contact.where email_address: email_address_in
     contacts.each do |document|
       # print the contact
-      puts JSON.pretty_generate(document)
+      puts JSON.pretty_generate(document.as_document)
     end
   end
 
@@ -60,7 +60,7 @@ class ContactManager
     contacts = Contact.where phone_number: phone_number_in
     contacts.each do |document|
       # print the contact
-      puts JSON.pretty_generate(document) 
+      puts JSON.pretty_generate(document.as_document) 
     end
   end
 end
