@@ -30,3 +30,14 @@ class ContactManager
       puts JSON.pretty_generate(document)
     end
   end
+
+  # REQUIRES: name_in is well-formatted
+  # EFFECTS: Prints all contacts with name == name_in
+  def query_by_name(name_in)
+    # Access all documents in the contacts collection with name == name_in
+    contacts = Contact.where name: name_in
+    contacts.each do |document|
+      # print the contact
+      puts JSON.pretty_generate(document)
+    end
+  end
