@@ -62,6 +62,7 @@ class ContactManager
     # Access all documents in the contacts collection with phone_number == phone_number_in
     cursor = @collection.find phone_number: phone_number_in
     cursor.each do |document|
+       # print the contact
       puts JSON.pretty_generate(document) 
     end
   end

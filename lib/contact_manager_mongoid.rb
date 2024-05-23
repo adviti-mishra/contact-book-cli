@@ -52,3 +52,15 @@ class ContactManager
       puts JSON.pretty_generate(document)
     end
   end
+
+  # REQUIRES: phone_number_in is well-formatted
+  # EFFECTS: Prints all contacts with phone_number == phone_number_in
+  def query_by_number(phone_number_in)
+    # Access all documents in the contacts collection with phone_number == phone_number_in
+    contacts = Contact.where phone_number: phone_number_in
+    contacts.each do |document|
+      # print the contact
+      puts JSON.pretty_generate(document) 
+    end
+  end
+end
