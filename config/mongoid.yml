@@ -1,0 +1,7 @@
+# config/mongoid.yml
+development:
+  clients:
+    default:
+      database: ContactsApp
+      hosts:
+        - localhost:27017
